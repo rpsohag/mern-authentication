@@ -6,6 +6,7 @@ import express, {
   ErrorRequestHandler,
 } from "express";
 import dotenv from "dotenv";
+import connectToDatabase from "./config/db";
 
 dotenv.config();
 
@@ -31,5 +32,6 @@ app.use(<ErrorRequestHandler>function (err, req, res, next: NextFunction) {
 });
 
 app.listen(PORT, () => {
+  connectToDatabase();
   console.log(`Server is running on port ${PORT}`);
 });
