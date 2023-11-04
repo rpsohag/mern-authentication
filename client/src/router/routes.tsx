@@ -4,29 +4,39 @@ import About from "../pages/About";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
-
+import Layouts from "../components/Layouts";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
-    {
+  {
+    element: <Layouts />,
+    children: [
+      {
         path: "/",
-        element: <Home/>
-    },
-    {
+        element: <Home />,
+      },
+      {
         path: "/about",
-        element: <About/>
-    },
-    {
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
         path: "sign-in",
-        element: <SignIn/>
-    },
-    {
+        element: <SignIn />,
+      },
+      {
         path: "sign-up",
-        element: <SignUp/>
-    },
-    {
+        element: <SignUp />,
+      },
+      {
         path: "/profile",
-        element: <Profile/>
-    }
-])
+        element: <Profile />,
+      },
+    ],
+  },
+]);
 
-export default router
+export default router;
