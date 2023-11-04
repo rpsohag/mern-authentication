@@ -1,11 +1,13 @@
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
+import router from './router/routes'
 
 function App() {
 
 
   return (
     <>
-      <h1 className='text-4xl'>MERN Auth</h1>
+      <RouterProvider router={router} />
     </>
   )
 }
