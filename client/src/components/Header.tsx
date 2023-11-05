@@ -13,7 +13,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="relative px-4 py-4 flex justify-between items-center bg-neutral-100/50">
+      <nav className="relative px-4 py-4 flex justify-between items-center bg-neutral-100/50 shadow-md">
         <NavLink className="text-3xl font-bold leading-none" to="/">
           <img src={Logo} alt="Logo" />
         </NavLink>
@@ -98,7 +98,7 @@ const Header = () => {
           Sign In
         </NavLink>
         <NavLink
-          className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200"
+          className="hidden lg:inline-block py-2 px-6 bg-[#002D74] hover:bg-[#002c74c2] text-sm text-white font-bold rounded-xl transition duration-200"
           to="/sign-up"
         >
           Sign up
