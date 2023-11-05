@@ -7,17 +7,23 @@ import express, {
 } from "express";
 import dotenv from "dotenv";
 import connectToDatabase from "./config/db";
+import authRoutes from "./routes/auth.route";
 
 dotenv.config();
 
 const app: Application = express();
 const PORT: Number = Number(process.env.PORT) || 5050;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   return res.status(200).json({
     message: "Successfully getting home page",
   });
 });
+
+app.use("/api/v1/auth", authRoutes);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(new Error("Your Requested URL Not Found"));
