@@ -36,14 +36,14 @@ export const signIn = async (
   try {
     const existUser = await User.findOne({ email });
     if (!existUser) {
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         message: "User not found!",
       });
     }
     const validPassword = bcryptjs.compareSync(password, existUser.password);
     if (!validPassword) {
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         message: "Invalid email or password!",
       });
@@ -52,17 +52,19 @@ export const signIn = async (
       expiresIn: "1h",
     });
 
-    res.cookie("access_token", token, {
+    res.cookie("accessToken", token, {
       httpOnly: true,
+      secure: false,
+      sameSite: "strict",
       path: "/",
-      expires: new Date(Date.now() + 1000 * 60),
-      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
       message: "Login successfull",
       data: existUser,
+      token,
     });
   } catch (error) {
     next(error);

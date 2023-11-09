@@ -23,16 +23,16 @@ const corsOptions = function (
   let options;
   const originHeader = req.header("Origin");
   if (originHeader !== undefined && whiteList.indexOf(originHeader) !== -1) {
-    options = { origin: true };
+    options = { origin: true, credentials: true };
   } else {
     options = { origin: false };
   }
   callback(null, options);
 };
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors(corsOptions));
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   return res.status(200).json({
     message: "Successfully getting home page",
